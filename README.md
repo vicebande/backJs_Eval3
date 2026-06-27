@@ -104,3 +104,9 @@ Los logs de la aplicación se transmiten en tiempo real a **Amazon CloudWatch Lo
 * **Grupo de Logs**: `/ecs/user-service`
 * **Prefijo de Logs**: `ecs`
 * Esto permite realizar el análisis de errores e inspeccionar llamadas HTTP del endpoint `/api/users/register` o `/api/users`.
+
+---
+
+## ⚡ Estado del Despliegue
+* **Último Commit**: Despliegue inicial activado vía GitHub Actions.
+
