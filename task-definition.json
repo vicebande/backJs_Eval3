@@ -1,0 +1,61 @@
+{
+  "family": "user-service-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::687545780788:role/LabRole",
+  "taskRoleArn": "arn:aws:iam::687545780788:role/LabRole",
+  "containerDefinitions": [
+    {
+      "name": "user-container",
+      "image": "687545780788.dkr.ecr.us-east-1.amazonaws.com/user-service:latest",
+      "portMappings": [
+        {
+          "containerPort": 8081,
+          "hostPort": 8081,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "8081"
+        },
+        {
+          "name": "DB_HOST",
+          "value": "eva3-db-instance.xxxxxx.us-east-1.rds.amazonaws.com"
+        },
+        {
+          "name": "DB_PORT",
+          "value": "3306"
+        },
+        {
+          "name": "DB_USER",
+          "value": "dbadmin"
+        },
+        {
+          "name": "DB_NAME",
+          "value": "users_db"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "arn:aws:ssm:us-east-1:687545780788:parameter/eva3/db/password"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/user-service",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
