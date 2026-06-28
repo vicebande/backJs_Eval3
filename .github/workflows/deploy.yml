@@ -10,7 +10,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: user-service
   ECS_SERVICE: user-service
-  ECS_CLUSTER: eva3-cluster
+  ECS_CLUSTER: advanced-shark-9cocx5
   ECS_TASK_DEFINITION: task-definition.json
   CONTAINER_NAME: user-container
 
